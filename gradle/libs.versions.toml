@@ -32,6 +32,7 @@ kotlinSerialization = "1.6.3"
 immutable = "0.3.5"
 gson = "2.10.1"
 glide = "4.16.0"
+data = "1.1.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -64,6 +65,7 @@ kotlinx-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collectio
 gson-code = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 
+datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "data" }
 
 
 [plugins]
