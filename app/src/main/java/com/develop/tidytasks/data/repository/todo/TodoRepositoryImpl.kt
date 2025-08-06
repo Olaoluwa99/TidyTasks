@@ -38,10 +38,10 @@ class TodoRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun updateTodo(id: Int, todo: Todo): Flow<NetworkResult<Todo>> = flow {
+    override suspend fun updateTodo(todo: Todo): Flow<NetworkResult<Todo>> = flow {
         emit(NetworkResult.Loading)
         try {
-            val response = todoApi.updateTodo(id, todo)
+            val response = todoApi.updateTodo(todo.id, todo)
             emit(NetworkResult.Success(response))
         } catch (e: HttpException) {
             emit(NetworkResult.Error(e.localizedMessage ?: "HTTP error"))

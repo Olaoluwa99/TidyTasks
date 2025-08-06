@@ -8,6 +8,8 @@
     <color name="background">#FFF8F7</color>
 
     <color name="text_color">#FF000000</color>
+    <color name="error_red">#BA1A1A</color>
+
     <color name="invert_text_color">#FFFFFFFF</color>
 
     <color name="rating_yellow">#FFC107</color>

@@ -13,32 +13,53 @@
         android:id="@+id/introText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:text="Welcome Back!"
-        android:textSize="@dimen/medium_text_size_16"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Hello there!"
+        android:textSize="@dimen/medium_text_size"
+        android:layout_marginTop="@dimen/default_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/inProgress"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/subText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="In Progress"
-        android:layout_marginEnd="@dimen/small_margin"
-        app:layout_constraintEnd_toStartOf="@id/completed"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="Keep track and stay ahead — your tasks are waiting."
+        android:textSize="@dimen/medium_text_size_16"
+        app:layout_constraintStart_toStartOf="@id/introText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/introText" />
 
-    <Button
-        android:id="@+id/completed"
-        android:layout_width="0dp"
+    <CheckBox
+        android:id="@+id/checkIsCompleted"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Completed"
-        app:layout_constraintBottom_toBottomOf="@id/inProgress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/inProgress"
-        app:layout_constraintTop_toTopOf="@id/inProgress" />
+        android:checked="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subText"
+        android:text="In Progress"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        />
+
+    <CheckBox
+        android:id="@+id/checkInProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        app:layout_constraintStart_toEndOf="@id/checkIsCompleted"
+        app:layout_constraintTop_toTopOf="@id/checkIsCompleted"
+        android:text="In Progress"
+        android:layout_margin="0dp"
+        android:padding="0dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        />
 
     <TextView
         android:id="@+id/emptyText"
@@ -47,10 +68,19 @@
         android:fontFamily="@font/poppins_semi_bold"
         android:text="There is no Task currently available"
         android:textSize="@dimen/medium_text_size_16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@id/recyclerView"
+        app:layout_constraintEnd_toEndOf="@id/recyclerView"
+        app:layout_constraintBottom_toBottomOf="@id/recyclerView"
+        app:layout_constraintTop_toTopOf="@id/recyclerView" />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/recyclerView"
+        app:layout_constraintEnd_toEndOf="@id/recyclerView"
+        app:layout_constraintBottom_toBottomOf="@id/recyclerView"
+        app:layout_constraintTop_toTopOf="@id/recyclerView" />
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="0dp"
@@ -60,13 +90,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/baseline_edit_24" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:layout_marginTop="@dimen/default_margin"
-        app:layout_constraintTop_toBottomOf="@id/inProgress"
+        app:layout_constraintTop_toBottomOf="@id/checkIsCompleted"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
