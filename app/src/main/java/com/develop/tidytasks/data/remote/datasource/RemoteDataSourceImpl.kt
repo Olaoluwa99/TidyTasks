@@ -6,6 +6,7 @@ import com.develop.tidytasks.data.model.Todo
 import com.develop.tidytasks.data.remote.NetworkResult
 import com.develop.tidytasks.data.remote.api.AuthApi
 import com.develop.tidytasks.data.remote.api.TodoApi
+import com.develop.tidytasks.data.remote.api.TodoResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -33,7 +34,7 @@ class RemoteDataSourceImpl @Inject constructor(
         }
     }
 
-    override suspend fun getTodos(): Flow<NetworkResult<List<Todo>>> = flow {
+    override suspend fun getTodos(): Flow<NetworkResult<TodoResponse>> = flow {
         try {
             val response = todoApi.getTodos()
             emit(NetworkResult.Success(response))

@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "https://dummyjson.com/" // or your mock server base URL
+    private const val BASE_URL = "https://dummyjson.com/"
 
     @Provides
     @Singleton

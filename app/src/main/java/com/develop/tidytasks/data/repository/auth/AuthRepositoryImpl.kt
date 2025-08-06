@@ -1,9 +1,11 @@
 package com.develop.tidytasks.data.repository.auth
 
+import com.develop.tidytasks.data.local.TokenStorage
 import com.develop.tidytasks.data.model.AuthRequest
 import com.develop.tidytasks.data.model.AuthResponse
 import com.develop.tidytasks.data.remote.NetworkResult
 import com.develop.tidytasks.data.remote.api.AuthApi
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -11,10 +13,11 @@ import java.io.IOException
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val authApi: AuthApi
+    private val authApi: AuthApi,
+    private val tokenStorage: TokenStorage
 ) : AuthRepository {
 
-    override suspend fun login(request: AuthRequest): Flow<NetworkResult<AuthResponse>> = flow {
+    /*override suspend fun login(request: AuthRequest): Flow<NetworkResult<AuthResponse>> = flow {
         emit(NetworkResult.Loading)
         try {
             val response = authApi.login(request)
@@ -36,5 +39,45 @@ class AuthRepositoryImpl @Inject constructor(
         } catch (e: IOException) {
             emit(NetworkResult.Error("Network error"))
         }
+    }*/
+
+    override suspend fun login(request: AuthRequest): Flow<NetworkResult<AuthResponse>> = flow {
+        emit(NetworkResult.Loading)
+        try {
+            val response = authApi.login(request)
+
+            // Save token
+            response.accessToken.let { token ->
+                tokenStorage.saveToken(token)
+            }
+
+            emit(NetworkResult.Success(response))
+        } catch (e: HttpException) {
+            emit(NetworkResult.Error(e.localizedMessage ?: "HTTP error"))
+        } catch (e: IOException) {
+            emit(NetworkResult.Error("Network error"))
+        }
+    }
+
+    override suspend fun register(request: AuthRequest): Flow<NetworkResult<AuthResponse>> = flow {
+        emit(NetworkResult.Loading)
+        try {
+            val response = authApi.register(request)
+
+            // Save token
+            response.accessToken.let { token ->
+                tokenStorage.saveToken(token)
+            }
+
+            emit(NetworkResult.Success(response))
+        } catch (e: HttpException) {
+            emit(NetworkResult.Error(e.localizedMessage ?: "HTTP error"))
+        } catch (e: IOException) {
+            emit(NetworkResult.Error("Network error"))
+        }
+    }
+
+    override fun isSignedIn(): Flow<Boolean> {
+        return tokenStorage.getToken().map { !it.isNullOrBlank() }
     }
 }

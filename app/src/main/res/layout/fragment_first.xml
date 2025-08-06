@@ -1,31 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/testLayout"
+    android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp">
 
-    <Button
-        android:id="@+id/btnLoginTest"
+    <LinearLayout
+        android:id="@+id/testLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Test Login" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnGetTodosTest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Test Get Todos" />
+        <TextView
+            android:id="@+id/signInText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            android:text="ABC" />
 
-    <TextView
-        android:id="@+id/tvResult"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:text="Results will show here" />
-</LinearLayout>
+        <Button
+            android:id="@+id/btnLoginTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test Login" />
+
+        <Button
+            android:id="@+id/btnAddTodoTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test Add Todo" />
+
+        <Button
+            android:id="@+id/btnGetTodosTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test Get Todos" />
+
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:text="Results will show here" />
+    </LinearLayout>
+
+
+</ScrollView>
 
 <!--
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"

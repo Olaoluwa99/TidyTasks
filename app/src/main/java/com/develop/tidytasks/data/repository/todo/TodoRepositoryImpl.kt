@@ -3,6 +3,7 @@ package com.develop.tidytasks.data.repository.todo
 import com.develop.tidytasks.data.model.Todo
 import com.develop.tidytasks.data.remote.NetworkResult
 import com.develop.tidytasks.data.remote.api.TodoApi
+import com.develop.tidytasks.data.remote.api.TodoResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -13,7 +14,7 @@ class TodoRepositoryImpl @Inject constructor(
     private val todoApi: TodoApi
 ) : TodoRepository {
 
-    override suspend fun getTodos(): Flow<NetworkResult<List<Todo>>> = flow {
+    override suspend fun getTodos(): Flow<NetworkResult<TodoResponse>> = flow {
         emit(NetworkResult.Loading)
         try {
             val response = todoApi.getTodos()
