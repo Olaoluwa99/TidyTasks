@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="todo"
+            type="com.develop.tidytasks.data.model.Todo" />
+
+        <variable
+            name="viewModel"
+            type="com.develop.tidytasks.presentation.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/taskText"
+            android:src="@drawable/baseline_radio_button_unchecked_24"
+            />
+
+        <TextView
+            android:id="@+id/taskText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_marginStart="@dimen/small_margin"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="@dimen/medium_text_size_16"
+            android:textColor="@color/text_color"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/selector"
+            app:layout_constraintEnd_toStartOf="@+id/taskCompleteCheck"
+            tools:text="@{todo.todo}" />
+
+        <CheckBox
+            android:id="@+id/taskCompleteCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@{todo.completed}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/taskText"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
